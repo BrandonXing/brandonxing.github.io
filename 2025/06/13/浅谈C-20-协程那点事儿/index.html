@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Brandon Xing">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/06/13/浅谈c-20-协程那点事儿/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈C++20 协程那点事儿">
+<meta property="og:url" content="http://example.com/2025/06/13/%E6%B5%85%E8%B0%88C-20-%E5%8D%8F%E7%A8%8B%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-06-13T02:17:40.000Z">
+<meta property="article:modified_time" content="2025-06-13T04:16:39.573Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            浅谈C++20 协程那点事儿 | Brandon&#39; Blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"simple","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/5/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Brandon&#39; Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/categories"
+                        >
+                            <span>Categories</span>
+                            <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">浅谈C++20 协程那点事儿</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/redefine-avatar.svg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Brandon Xing</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-06-13 10:17:40</span>
+        <span class="mobile">2025-06-13 10:17:40</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-06-13 12:16:39</span>
+            <span class="mobile">2025-06-13 12:16:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="协程概念"><a href="#协程概念" class="headerlink" title="协程概念"></a>协程概念</h1><p>本文转自：<a class="link"   target="_blank" rel="noopener" href="https://developer.aliyun.com/article/1490099" >https://developer.aliyun.com/article/1490099<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>先介绍一点协程的概念，如果你已经理解和掌握了相关的背景知识就可以跳过这个章节（或者快速浏览下，也许我们有些观念不一致可以讨论）。这里我想稍微聊的深入一点，这涉及到入门后遇到复杂的协程问题时能不能正确的理解并解决问题。</p>
+<p><strong>协程</strong>（Coroutines），也被称为微线程，纤程。一般指一个可以被暂停和恢复执行的逻辑体。一个普通的函数有 2 个常规的操作和行为：<strong>调用</strong>（Call）和<strong>返回</strong>（Return）。当调用这个函数的时候，会暂停当前的执行，跳转到这个函数的起始位置去执行。当函数执行完成后会返回结果（或者抛出异常）。这个调用过程通常是“一次性”的，再次调用这个函数又是一次独立的行为。但是协程不是，协程的操作和行为是：<strong>调用&#x2F;创建</strong>（Create）、<strong>暂停&#x2F;挂起</strong>（Suspend）、 <strong>恢复执行</strong>（Resume）和<strong>销毁</strong>（Destroy）。协程可以允许这个被调用的函数执行到某个位置之后暂时保留自己的临时信息并挂起。在后面的某个时间点可以再回到当时执行的位置和状态继续执行。所以从某种意义上可以说协程是普通函数的泛化（Generalisation）。</p>
+<p>当一个程序开始执行时，操作系统会创建出一个进程，操作系统内核里也会创建出一个调度实体（一个记录这个进程相关信息的数据结构），然后跳转到这个程序的代码入口去执行。同一时间操作系统往往同时在执行很多个进程。这些进程在真实的多核 CPU 上并行或者轮流执行（当进程数大于 CPU 核数时排队）。操作系统负责对这些调度实体进行监控、统计、切换等一切调度工作。一个进程通常只有一个常规的执行流（主线程），对应到 C&#x2F;C++ 语言里就是一个串行执行的main()函数，main()函数里会调用其他函数。其他函数可能继续调用另外的函数，最终main()函数执行完成后进程退出。当一个进程执行代码时，CPU 的寄存器保存着当前函数的执行状态，临时结果等信息。如果要调用新的函数，那么需要把当前部分寄存器的值保存在内存里再去调用新的函数（因为新的函数也会使用这些寄存器进行运算）。</p>
+<p>那么哪些寄存器需要保存？传递给新函数的参数放在哪里？调用完的返回值保存在哪里？<strong>调用约定</strong>（Calling Conventions）规定了这些细节。本文不详细调用约定的细节，有兴趣的话可以阅读参考文献 [1]。</p>
+<p>在 AMD64&#x2F;x86_64 架构下，函数调用使用栈（Stack）来实现，每个函数使用的栈区域称之为一个栈帧（Stack Frame）。下面展示一段代码和其执行时对应的栈状态：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://ucc.alicdn.com/pic/developer-ecology/6ibaby6qg4ku4_29922542e3b643ee86512886b0458000.png?x-oss-process=image/resize,w_1400,m_lfit/format,webp"
+                      alt="image.png"
+                ></p>
+<p>当代码执行到main()-&gt;func1()-&gt;func2()的时候，内存栈是如图的形式。新的函数调用会使得栈空间向上增长为新函数创建栈帧，创建局部变量以及保存之前函数使用的寄存器。函数调用返回后，栈帧就会被回收，同时从栈里恢复出之前的寄存器值并跳转到之前执行的代码地址（所以 C&#x2F;C++代码里不能返回函数局部变量的指针，因为函数返回后再访问被回收的栈帧是很危险的，这些空间随后就被其他函数的临时数据覆盖了）。随着函数的调用和返回，栈不断的增大和缩小。这个栈默认有多大？在 Linux 系统上执行ulimit -s就能看到默认的值是 8192 KB。如果程序里定义了过大的函数局部变量或者函数调用深度太长（尤其是递归），就有栈溢出的风险。</p>
+<p>与栈相对的内存区域是堆，一般在程序运行时使用brk(2)或者mmap(2)进行分配，C&#x2F;C++程序里使用的malloc(3)&#x2F;free(3)或者new&#x2F;delete（只讨论内存分配的语义部分）分配一般是 CRT 的封装（或者jemalloc之类的内存分配库）。堆内存区域不随着函数调用结束而自动回收，需要程序自行在使用完成后进行显式的释放动作。本质上堆、栈只是内存逻辑上的概念，只是创建时机和使用方式的不同而已，并无本质区别。</p>
+<p>如果逻辑上一个程序需要更多的执行流，可以创建线程来并发地执行另一个函数。这里的线程通常是操作系统支持的概念，对应内核的一个调度实体，可以在不同的 CPU 核上和主线程并行的执行。操作系统内核在什么时候进行任务调度呢？自然是执行流跳转到内核代码的时候，除了系统调用会陷入内核额外触发调度外，还需要硬件时钟中断强行中断当前执行的程序来切换到内核逻辑来兜底（否则一个在用户态死循环的程序岂不是永远不交出执行权了）。这个创建的线程跟主线程一样，拥有一个完全独立的线程栈去进行自身函数调用的状态保存。</p>
+<p>铺垫了这么多，那协程究竟是什么？前文提到协程函数的操作和行为有：<strong>调用&#x2F;创建</strong>（Create）、<strong>暂停&#x2F;挂起</strong>（Suspend）、<strong>恢复执行</strong>（Resume）和<strong>销毁</strong>（Destroy）。创建和销毁比较好理解，创建线程也是有这 2 个步骤。多出来的挂起和恢复操作，是因为这个执行逻辑完全是在用户态模拟出来的，不存在一个内核的调度实体，那么自然需要在用户态去管理这些执行流的挂起和恢复执行。如果你熟悉 Linux 线程发展史的话，你会知道在 Linux 内核支持线程概念前，用户态模拟出的多个可以切换的“线程”其实就是协程的一种实现。在多线程编程里，一般不在线程里添加主动切换的逻辑，往往都是被动的被内核从执行状态转换为等待状态，比如 IO 操作未完成，尝试获取的资源暂时被强占的时候（最多就是调用某些系统调用告诉内核自己暂时让出 CPU，让内核看看要不要执行别的任务）。但协程不是，协程需要用户逻辑在后续执行条件不满足的时候主动切换让出执行权。</p>
+<p>这里姑且将这种协程称之为第一代协程，其仅仅是线程等概念在理论上的推演。而广义的<strong>协程</strong>（Coroutines）是个很宽泛的概念。尤其是async&#x2F;await语义带来了新的浪潮之后。这几年新的编程语言里引入的协程模型几乎都是async&#x2F;await语义的（除了 go 语言 😁）。本文不考古async&#x2F;await概念在微软的发展历史，有兴趣的话可以参阅相关资料。</p>
+<p>那么，如何在 C&#x2F;C++ 语言里实现协程？容易想到的方式就是类似线程的实现方式（第一代协程抽象），为每一个协程创建一个独立的内存栈进行上下文的保存和函数调用。这种方式在协程间进行切换的方法就比较简单，只需要用户代码自行保存上下文之后直接跳转到目标函数位置执行即可。这和操作系统内核切换多个执行流的方式也很类似。这再也就是在 C++20 协程相关的资料里提到的所谓的<strong>有栈协程</strong>（Stackful Coroutine）。有栈协程的创建代价比较大。因为协程函数执行前要预先创建好独立的协程栈，预分配内存这也就限制了同时并发的协程数量。而且预分配的栈过大会造成浪费，过小了又会导致函数调用深了以后导致栈溢出（其实从 Linux 内核内存分配的角度讲，实际用到了才会分配内存页，也就是一个协程栈最多也就比实际使用的内存浪费一个物理页）。另外现代 CPU 的分支预测里有返回栈缓冲区（Return Stack Buffer，RSB）的预测，不断手动的栈切换就在不断的破坏 RSB 的预测机制，且越复杂越高频的切换影响就越大。但这种模型的好处是它对编译器几乎是透明的，对已有代码的协程化改造会非常简单，只需要修改创建协程的位置并在代码里添加主动的切换点即可（甚至可以用 hook 的方式自动加yield进去做到完全不需要修改已有代码）。</p>
+<blockquote>
+<p>这里稍微提一下<strong>共享栈协程</strong>（Copying the Stack Coroutine），既然每个协程都创建一个额外的栈太浪费了，那就只创建一个。在协程切换的时候，拷贝当前已使用的栈到另外的内存里，腾出来栈给新的协程用即可。需要切换回来的时候，拷贝回来之前的栈即可。共享栈协程解决了预分配的内存浪费问题，但是引入了栈备份和还原的开销。要想性能好的话，还需要尽量减少函数调用深度以及尽量不在栈上分配太大的数据结构。所以共享栈协程只是一种优化手段，所以一般不单独拿出来对比和讨论。</p>
+</blockquote>
+<p>与有栈协程相对的是<strong>无栈协程</strong>（Stackless Coroutine），即 C++20 所采用的模式。这个模式下创建的协程很轻量，一开始就会在堆上保存所有的协程函数的“临时变量”以及调用参数等上下文信息。从协程函数里切换出来的时候，因为大多数东西都是保存在堆上的，所以切换动作可以很短很快。恢复执行的时候也不需要太多的栈上结构还原就可以跳转回原来的代码位置执行。因为创建出来的协程不申请新的内存栈而是在调用&#x2F;恢复位置原地还原上下文，所以被称之为无栈协程。但是这种模式无法简单适配已有代码来实现协程化改造，需要对旧代码重构甚至重写才能完成改造。</p>
+<p>强调一下，这个有栈无栈是站在 C&#x2F;C++ 语言的角度去讨论的。有些语言（比如 Python）并不在栈空间为执行流分配保存上下文的「栈」，所以不存在 Stackful 和 Stackless 讨论。甚至在纯理论的讨论协程概念时，提到栈（Stack）都显得有些「业余」。因为栈不是实现函数调用的唯一方式，只是现代主流编程语言大都这么实现的而已。尽管这不影响这篇文档想表达的实际意思，但这里还是阐明一下，本文只是在 C&#x2F;C++ 语言现状下偏向于工程化的讨论，不拔高到纯粹的理论高度。另外我也只是个普通的写代码的程序员而已，无法从科学（数学）角度讨论async&#x2F;await的语义，还请见谅 😁。</p>
+<blockquote>
+<p>说多了容易让读者糊涂，但是不说的话又担心让读者一叶障目。本文介绍具体的实现原理是为了快速的理解抽象理论，但也容易造成对协程理论的狭隘理解，这一点还请读者注意。</p>
+</blockquote>
+<p>协程的发展方向是什么？目前看都是在着力解决异步代码的「形式化同步编写」的问题，即帮助程序员以近似同步的方式来编写异步逻辑，在形式上使得有逻辑关系的代码不要割裂。但是这种抽象是有运行时的成本的。这里不妨来一句暴论：在纯粹理论上协程一般不如线程 + callbacks 的性能来得好（至少当前的自动优化水平下）。追求极限性能的话还是算了。<strong>追求维护成本和性能的平衡或者为了降低开发成本，这才是协程正确的打开方式。</strong></p>
+<p>有人说「程序就是一个状态机，线程&#x2F;协程是给那些写不好状态机的人准备的」[2]。这句话有道理吗？其实有一点道理。从最终的执行上看，程序就是一个在 CPU 上执行的状态机。但是从程序的设计上讲，更高级别的抽象方式和方法有助于写出来更容易被「人类」理解和改进的逻辑。高级抽象是构建大型软件系统所必须的基础设施。哪怕付出一点运行时成本也是值得的。随着技术的发展，运行时成本会逐渐优化降低的。而我们必须时刻提醒自己，代码是写给「人」看的，而不是「机器」。</p>
+<h1 id="C-20-的协程实现"><a href="#C-20-的协程实现" class="headerlink" title="C++20 的协程实现"></a>C++20 的协程实现</h1><p>前面讨论这么多背景和原理做什么？说来惭愧，C++20 的协程机制我看了好几遍 cppreference 的文档才理解。目前 C++20 实现的协程机制不适合给最终用户去使用，而是给协程库的作者提供的一些编译器的协程支持和语法糖。我认为想理解目前实现最好的方式就是从设计者的角度去理解为什么要这么做。</p>
+<p>前文提到，C++20 的协程实现是 Stackless 的实现。其创建出来的协程将其执行所需要的必要数据保存在堆上。在协程切换出去保存上下文信息到堆后，依旧在原来的栈位置恢复之前的函数执行。协程切换回来的时候也是在当前调用恢复操作的栈上还原之前的状态然后执行。所以编译器在这个过程中支持了什么？编译器支持了自动的协程上下文保存&#x2F;恢复，以及自动的变量捕获和堆上保存机制（有 go 语言那味了，go 语言支持返回函数局部变量的，编译器会自动将其保存在堆上）。所以 C++20 目前的协程仅仅就是个带了编译器辅助机制的基础实现（当然这符合 C++ 的一贯风格，都是编译器来支持标准库无法实现的最小化特性，其他的交给标准库去做）。</p>
+<p>C++20 的协程代码像语法糖一样会被编译器展开成更复杂的代码，这就需要很多「约定」来写用户侧的代码，然后依赖编译器去采用近似 codegen 的方式来生成后续部分（如果你懂 js 并且研究过 React 生命周期的话，你可能脑海里已经有画面了）。这也就是为什么看了很多 C++20 协程代码的 demo 后仍旧一头雾水的原因。所以本质上是理解生成后代码的流程，然后就能理解为什么要预先定义这些类型和回调来帮助编译器展开代码。</p>
+<h2 id="从一个“简单”的-demo-开始"><a href="#从一个“简单”的-demo-开始" class="headerlink" title="从一个“简单”的 demo 开始"></a>从一个“简单”的 demo 开始</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>下面是一个 C++20 协程的简单 demo 代码，如果没有高版本编译器的话可以用 Complier Explorer [3] 执行：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;coroutine&gt;</span><br><span class="line"></span><br><span class="line">template &lt;bool READY&gt;</span><br><span class="line">struct Awaiter &#123;</span><br><span class="line">    bool await_ready() noexcept &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;await_ready: &quot; &lt;&lt; READY &lt;&lt; std::endl;</span><br><span class="line">        return READY;</span><br><span class="line">    &#125;</span><br><span class="line">    void await_resume() noexcept &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;await_resume&quot; &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">    void await_suspend(std::coroutine_handle&lt;&gt;) noexcept &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;await_suspend&quot; &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct TaskPromise &#123;</span><br><span class="line">    struct promise_type &#123;</span><br><span class="line">        TaskPromise get_return_object() &#123;</span><br><span class="line">            std::cout &lt;&lt; &quot;get_return_object&quot; &lt;&lt; std::endl;</span><br><span class="line">            return TaskPromise&#123;std::coroutine_handle&lt;promise_type&gt;::from_promise(*this)&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        Awaiter&lt;true&gt; initial_suspend() noexcept &#123;</span><br><span class="line">            std::cout &lt;&lt; &quot;initial_suspend&quot; &lt;&lt; std::endl;</span><br><span class="line">            return &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        Awaiter&lt;true&gt; final_suspend() noexcept &#123;</span><br><span class="line">            std::cout &lt;&lt; &quot;final_suspend&quot; &lt;&lt; std::endl;</span><br><span class="line">            return &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        void unhandled_exception() &#123;</span><br><span class="line">            std::cout &lt;&lt; &quot;unhandled_exception&quot; &lt;&lt; std::endl;</span><br><span class="line">        &#125;</span><br><span class="line">        void return_void() noexcept &#123;</span><br><span class="line">            std::cout &lt;&lt; &quot;return_void&quot; &lt;&lt; std::endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    void resume() &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;resume&quot; &lt;&lt; std::endl;</span><br><span class="line">        handle.resume();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    std::coroutine_handle&lt;promise_type&gt; handle;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">TaskPromise task_func() &#123;</span><br><span class="line">    std::cout &lt;&lt; &quot;task first run&quot; &lt;&lt; std::endl;</span><br><span class="line">    co_await Awaiter&lt;false&gt;&#123;&#125;;</span><br><span class="line">    std::cout &lt;&lt; &quot;task resume&quot; &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    auto promise = task_func();</span><br><span class="line">    promise.resume();</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这段代码[4]运行后输出：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">get_return_object</span><br><span class="line">initial_suspend</span><br><span class="line">await_ready: 1</span><br><span class="line">await_resume</span><br><span class="line">task first run</span><br><span class="line">await_ready: 0</span><br><span class="line">await_suspend</span><br><span class="line">resume</span><br><span class="line">await_resume</span><br><span class="line">task resume</span><br><span class="line">return_void</span><br><span class="line">final_suspend</span><br><span class="line">await_ready: 1</span><br><span class="line">await_resume</span><br></pre></td></tr></table></figure></div>
+
+<p>尽管我已经尽力把第一个 demo 写的足够小了，但是依旧比其他语言的协程 demo 长很多。原因也很简单，C++ 想让程序员可以定制协程创建和执行的任意一个阶段的任意步骤的行为，那么就必须定义足够多的回调函数来定义每个阶段的行为。不参考任何文献想看懂上面的代码的话还是有些难度的。但是回想一下上文所说的“编译器展开”代码的实现原理，结合这些函数的执行顺序就可以大致推测出来编译器展开代码后函数调用的顺序。其实 cppreference 给出来了具体的执行过程 [5]，但是有些语焉不详，这里我们更详细的讲述流程并解释一些细节：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://ucc.alicdn.com/pic/developer-ecology/6ibaby6qg4ku4_6c7bedbbeeae41a19b88adf54ac30153.png?x-oss-process=image/resize,w_1400,m_lfit/format,webp"
+                      alt="image.png"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://ucc.alicdn.com/pic/developer-ecology/6ibaby6qg4ku4_1f75dbc57cb44f38b70bab9125d96708.png?x-oss-process=image/resize,w_1400,m_lfit/format,webp"
+                      alt="image.png"
+                ></p>
+<ol>
+<li>调用operator new申请空间并初始化协程状态（Coroutine State），协程状态是编译器根据协程函数自动生成的类，每个不同的协程都得生成单独的。</li>
+<li>复制&#x2F;移动调用协程函数的参数到协程状态对象里（参数要保存到堆里才能在切换时保留）[6]，另外这个函数体内部如果定义了其他栈上变量，也需要放到堆上（demo 里没有定义）。这是靠编译器自动分析完成的，有些不依赖编译器实现的“Stackless C&#x2F;C++”协程库会给个函数创建临时变量（分配在堆上）。当然还是编译器原生支持会简单自然很多。这里引申一个问题，如果某些临时对象在协程返回时已经离开了作用域而理论上不需要捕获，是不是不用额外保存呢？是不是可以直接析构呢？答案是不行，因为 C++ 有个规则是对象的析构顺序是构造的反顺序。所以一旦中间的某个对象被保存在堆上，就可能被迫保存更多的对象以保证析构顺序（希望后续标准能修订协程函数在这里的行为规范，可以提升性能）。</li>
+<li>构造协程的Promise::promise_type对象（也保存在协程状态里）。Promise对象是 C++ 规定的协程的返回值对象，对应上面 demo 代码里的TaskPromise 类 [7]。如果用户定义的Promise::promise_type有接受所有协程参数的构造函数，则调用该构造函数构造。否则调用默认构造函数构造。随后调用promise_type.get_return_object()函数创建协程函数的返回值对象TaskPromise。该对象会在协程首次挂起时返回到调用协程函数的位置。coroutine_handle<promise_type>和promise_type是可以使用handle::from_promise()和handle.promise()接口相互转换的（暂时不用深究原理，这涉及到一些编译器 builtin 的实现，和具体对象的内存布局有关系）。协程句柄（std::coroutine_handle&lt;&gt;）是一个可以操作协程的对象（类似可以操作线程的std::thread对象一样）。为了协程函数可以像普通函数调用一样去调用，所以这个 handle 的获取方式就有些别扭。</li>
+<li>调用Promise::promise_type.initial_suspend()，后者会返回一个awaitable的对象，这个对象有三个定义好的成员函数，这里只需要知道await_ready()成员返回 true 时不进行默认挂起并立即调用await_resume()函数，否则立即挂起协程并调用await_suspend()函数即可。因为很多时候的co_await只需要知道要不要立即执行就行，所以标准库提供了默认的Awaiter实现：std::suspend_never和std::suspend_always类。前者永远不挂起，后者永远挂起。这里为什么搞这么复杂？答案是为了可扩展性，可以通过这个返回的对象来控制一个协程创建后是立即执行还是立即挂起，以及执行前是否要额外做一些操作，可以让用户方便的支持协程的调度机制。顺便说一句，demo 里的await_resume()函数返回值是 void，但其实可以返回任意类型，该返回值作为co_await表达式的返回值（demo 里没返回）。另外 demo 里的await_suspend()函数返回的是 void 类型，但实际上可以返回 bool 类型（返回 false 又会变成不挂起）甚至其他协程的coroutine_handle对象，此时会切换到该协程去执行。这就有了切换和调度的基础支持了，后面会详细聊这个机制。</li>
+<li>根据 4 的选择是直接执行还是挂起，直接挂起的话就立即返回Promise对象给调用者，否则要等到协程显式挂起或者执行完成才会返回调用者。demo 里是默认不挂起，等第一次挂起时才返回给调用者。调用者立即resume()了这个协程函数，然后协程函数执行完成退出。上面的代码没有显式的写返回语句，编译器会在最后补上co_return，co_return会调用 promise.return_void()函数。这里没返回值，如果co_return返回了一个值T t的话，就需要定义一个叫void return_value(T t)的函数，return_value()和return_void()不能共存。</li>
+<li>最后编译器调用co_await Promise::promise_type.final_suspend()函数结束协程（无论是抛异常结束还是正常退出都会调用）。注意final_suspend()返回的又是一个awaitable的对象，但是这里用std::suspend_always() 返回“挂起”时协程不会立即销毁内部的状态信息（否则直接销毁），因为有部分信息还保存在promise里呢。最佳实践是自己在Promise的析构函数里写coroutine_handle&lt;&gt;.destroy()。让handle的生命周期和Promise对象一致比较好，否则协程退出后再操作Promise对象就是 UAF 了（这个 demo 目前不需要，所以简单起见没这么处理）。</li>
+<li>至于promise.unhandled_exception()，是在协程里出现未捕获的异常时候调用的。但是注意在promise.get_return_object()之前就抛出的异常不会来到这里，比如new导致的std::bad_alloc异常就不会调用到这里。异常处理流程不详细解释了，cppreference 描述的很清楚。</li>
+</ol>
+<p>上面的task_func 代码运行结果结合这个流程介绍，编译器展开后的代码都能大致想象出来了：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">TaskPromise task_func() &#123;</span><br><span class="line">    // No parameters and local variables.</span><br><span class="line">    auto state = new __TaskPromise_state_(); // has TaskPromise::promise_type promise; </span><br><span class="line">    TaskPromise coro = state.promise.get_return_object();</span><br><span class="line">    try &#123;</span><br><span class="line">        co_await p.inital_suspend();</span><br><span class="line">        std::cout &lt;&lt; &quot;task first run&quot; &lt;&lt; std::endl;</span><br><span class="line">        co_await Awaiter&lt;false&gt;&#123;&#125;;</span><br><span class="line">        std::cout &lt;&lt; &quot;task resume&quot; &lt;&lt; std::endl;</span><br><span class="line">    &#125; catch (...) &#123;</span><br><span class="line">        state.promise.unhandled_exception();</span><br><span class="line">    &#125;</span><br><span class="line">    co_await state.promise.final_suspend();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>co_await 展开会麻烦点，尤其是await_suspend()同步的返回值含义是不同的。这里先不深究编译器代码展开的更具体的细节了，基本的原理解释清楚了就先把关注点放在如何应用上[8]。</p>
+<p>上文提到了协程函数返回的必须是一个符合规范的Promise对象，这个对象内部必须有一个Promise::promise_type类型（名字不能变，但是可以用别的名字定义在别处，在类里面 using 声明为这个名字）。这个Promise::promise_type类型必须实现上面流程里说的这些必备的函数，否则编译不通过。</p>
+<p>上面提到了Awaiter对象三个接口函数await_ready()、await_suspend()和await_resume()接口的行为，这里写一个例子来演示：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;coroutine&gt;</span><br><span class="line">#include &lt;future&gt;</span><br><span class="line">#include &lt;thread&gt;</span><br><span class="line"></span><br><span class="line">struct TaskPromise &#123;</span><br><span class="line">    struct promise_type &#123;</span><br><span class="line">        TaskPromise get_return_object() &#123;</span><br><span class="line">            std::cout &lt;&lt; &quot;get_return_object(), thread_id: &quot; &lt;&lt; std::this_thread::get_id() &lt;&lt; std::endl;</span><br><span class="line">            return TaskPromise&#123;std::coroutine_handle&lt;promise_type&gt;::from_promise(*this)&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        std::suspend_always initial_suspend() noexcept &#123; return &#123;&#125;; &#125;</span><br><span class="line">        std::suspend_always final_suspend() noexcept &#123; return &#123;&#125;; &#125;</span><br><span class="line">        void unhandled_exception() &#123;&#125;</span><br><span class="line">        void return_void() noexcept &#123;&#125;</span><br><span class="line">        size_t data = 0;</span><br><span class="line">    &#125;;</span><br><span class="line">    std::coroutine_handle&lt;promise_type&gt; handle;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct Awaiter &#123;</span><br><span class="line">    bool await_ready() noexcept &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;await_ready(), thread_id: &quot; &lt;&lt; std::this_thread::get_id() &lt;&lt; std::endl;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    void await_suspend(std::coroutine_handle&lt;TaskPromise::promise_type&gt; handle) noexcept &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;await_suspend(), thread_id: &quot; &lt;&lt; std::this_thread::get_id() &lt;&lt; std::endl;</span><br><span class="line">        auto thread = std::thread([=]() &#123;</span><br><span class="line">            std::this_thread::sleep_for(std::chrono::seconds(1));</span><br><span class="line">            handle.promise().data = 1;</span><br><span class="line">            handle.resume();</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.join();</span><br><span class="line">    &#125;</span><br><span class="line">    void await_resume() noexcept &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;await_resume(), thread_id: &quot; &lt;&lt; std::this_thread::get_id() &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">TaskPromise task_func() &#123;</span><br><span class="line">    std::cout &lt;&lt; &quot;task_func() step 1, thread_id: &quot; &lt;&lt; std::this_thread::get_id() &lt;&lt; std::endl;</span><br><span class="line">    co_await Awaiter&#123;&#125;;</span><br><span class="line">    std::cout &lt;&lt; &quot;task_func() step 2, thread_id: &quot; &lt;&lt; std::this_thread::get_id() &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    std::cout &lt;&lt; &quot;main(), thread_id: &quot; &lt;&lt; std::this_thread::get_id() &lt;&lt; std::endl;</span><br><span class="line">    auto promise = task_func();</span><br><span class="line">    std::cout &lt;&lt; &quot;main(), data: &quot; &lt;&lt; promise.handle.promise().data &lt;&lt; &quot;, thread_id: &quot; &lt;&lt; std::this_thread::get_id() &lt;&lt; std::endl;</span><br><span class="line">    promise.handle.resume();</span><br><span class="line">    std::cout &lt;&lt; &quot;main(), data: &quot; &lt;&lt; promise.handle.promise().data &lt;&lt; &quot;, thread_id: &quot; &lt;&lt; std::this_thread::get_id() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>执行结果如下：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">main(), thread_id: 0x1d9d91ec0</span><br><span class="line">get_return_object(), thread_id: 0x1d9d91ec0</span><br><span class="line">main(), data: 0, thread_id: 0x1d9d91ec0</span><br><span class="line">task_func() step 1, thread_id: 0x1d9d91ec0</span><br><span class="line">await_ready(), thread_id: 0x1d9d91ec0</span><br><span class="line">await_suspend(), thread_id: 0x1d9d91ec0</span><br><span class="line">await_resume(), thread_id: 0x16dce7000</span><br><span class="line">task_func() step 2, thread_id: 0x16dce7000</span><br><span class="line">main(), data: 1, thread_id: 0x1d9d91ec0</span><br></pre></td></tr></table></figure></div>
+
+<p>结合日志和上面的流程说明很好理解这段代码。代码里 26 行调用await_suspend()的handle参数是编译器帮着传入的（这个 handle 就一个void *指针，值传递的成本很低）。而 31 行代码是在另一个线程上调用的，而后续的协程代码也是在另一个线程运行的。这也揭示了协程的跨线程传递的能力，只要传递协程句柄，就可以实现在任意线程上恢复协程的执行。那么当协程跨线程传递时，线程安全的问题依旧要注意，而且因为执行流可以任意移动，因此带来的其他同步问题需要额外注意。</p>
+<h2 id="实现一个简单的-generator"><a href="#实现一个简单的-generator" class="headerlink" title="实现一个简单的 generator"></a>实现一个简单的 generator</h2><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>generator（生成器）在 Python&#x2F;Js 等语言里已经应用的很常见的，在 C++20 之前无法简单的实现，利用上面的协程机制可以方便的写出来简单的实现。</p>
+<p>现在有这样一个获取斐波那契数列的需求，每次拿到数列后续的一个数字。如果用 C++ 朴素实现的话要怎么做？需要定义一个斐波那契数列生成器的类。这个类有一个形如size_t next()的函数，每次调用就会返回下一个个数字，那么相关的变量就要保存在类成员变量里，以便于下一次调用next()函数时根据之前的值计算本次需要返回的值。这个类的代码很简单，这里就不占用篇幅了。这里只贴协程形式的实现：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;coroutine&gt;</span><br><span class="line"></span><br><span class="line">template &lt;typename T&gt;</span><br><span class="line">struct Generator &#123;</span><br><span class="line">    struct promise_type &#123;</span><br><span class="line">        Generator get_return_object() &#123;</span><br><span class="line">            return Generator&#123;std::coroutine_handle&lt;promise_type&gt;::from_promise(*this)&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        std::suspend_always initial_suspend() noexcept &#123; return &#123;&#125;; &#125;</span><br><span class="line">        std::suspend_always final_suspend() noexcept &#123; return &#123;&#125;; &#125;</span><br><span class="line">        void unhandled_exception() &#123;&#125;</span><br><span class="line">        void return_value(T t) noexcept &#123;</span><br><span class="line">            v = t;</span><br><span class="line">        &#125;</span><br><span class="line">        std::suspend_always yield_value(T t) &#123;</span><br><span class="line">            v = t;</span><br><span class="line">            return &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        T v&#123;&#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    bool has_next() &#123;</span><br><span class="line">        return !handle.done();</span><br><span class="line">    &#125;</span><br><span class="line">    size_t next() &#123;</span><br><span class="line">        handle.resume();</span><br><span class="line">        return handle.promise().v;</span><br><span class="line">    &#125;</span><br><span class="line">    std::coroutine_handle&lt;promise_type&gt; handle;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Generator&lt;size_t&gt; fib(size_t max_count) &#123;</span><br><span class="line">    co_yield 1;</span><br><span class="line">    size_t a = 0, b = 1, count = 0;</span><br><span class="line">    while (++count &lt; max_count - 1) &#123;</span><br><span class="line">        co_yield a + b;</span><br><span class="line">        b = a + b;</span><br><span class="line">        a = b - a;</span><br><span class="line">    &#125;</span><br><span class="line">    co_return a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    size_t max_count = 10;</span><br><span class="line">    auto generator = fib(max_count);</span><br><span class="line">    size_t i = 0;</span><br><span class="line">    while (generator.has_next()) &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;No.&quot; &lt;&lt; ++i &lt;&lt; &quot;: &quot; &lt;&lt; generator.next() &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>代码运行结果为：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">No.1: 1</span><br><span class="line">No.2: 1</span><br><span class="line">No.3: 2</span><br><span class="line">No.4: 3</span><br><span class="line">No.5: 5</span><br><span class="line">No.6: 8</span><br><span class="line">No.7: 13</span><br><span class="line">No.8: 21</span><br><span class="line">No.9: 34</span><br><span class="line">No.10: 55</span><br></pre></td></tr></table></figure></div>
+
+<p>前文介绍过co_await和co_return，新出现的标识符co_yield算是co_await的语法糖，可以比co_await更方便的传递出来一个值[9]。</p>
+<p>这里的Generator定义为一个模板类，可以用于各种类型的Generator的快速定义，如果有其他需求的话就可以快速实现了。当然这里的Generator考虑的不是很全面。一般还需要考虑 handle 对应的 coroutine state 的生命周期要和返回的 promise 对象一致，所以需要final_suspend()返回std::suspend_always后，promise 需要自己去释放 handle 对应的协程的相关内存。析构函数里加上释放逻辑后就需要完善Promise类的构造，拷贝等函数（三五法则）。稍微完善点的Generator代码如下：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">template &lt;typename T&gt;</span><br><span class="line">class Generator &#123;</span><br><span class="line">public:</span><br><span class="line">    struct promise_type;</span><br><span class="line">    using promise_handle_t = std::coroutine_handle&lt;promise_type&gt;;</span><br><span class="line">    explicit Generator(promise_handle_t h) : handle(h) &#123;&#125;</span><br><span class="line">    explicit Generator(Generator &amp;&amp;generator) : handle(std::exchange(generator.handle, &#123;&#125;)) &#123;&#125;</span><br><span class="line">    ~Generator() &#123;</span><br><span class="line">        if (handle) &#123;</span><br><span class="line">            handle.destroy();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Generator(Generator &amp;) = delete;</span><br><span class="line">    Generator &amp;operator=(Generator &amp;) = delete;</span><br><span class="line"></span><br><span class="line">    struct promise_type &#123;</span><br><span class="line">        Generator get_return_object() &#123;</span><br><span class="line">            return Generator&#123;std::coroutine_handle&lt;promise_type&gt;::from_promise(*this)&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        std::suspend_always initial_suspend() noexcept &#123; return &#123;&#125;; &#125;</span><br><span class="line">        std::suspend_always final_suspend() noexcept &#123; return &#123;&#125;; &#125;</span><br><span class="line">        void unhandled_exception() &#123;&#125;</span><br><span class="line">        void return_value(T t) noexcept &#123;</span><br><span class="line">            v = t;</span><br><span class="line">        &#125;</span><br><span class="line">        std::suspend_always yield_value(T t) &#123;</span><br><span class="line">            v = t;</span><br><span class="line">            return &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        T v&#123;&#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    bool has_next() &#123;</span><br><span class="line">        return !handle.done();</span><br><span class="line">    &#125;</span><br><span class="line">    size_t next() &#123;</span><br><span class="line">        handle.resume();</span><br><span class="line">        return handle.promise().v;</span><br><span class="line">    &#125;</span><br><span class="line">private:</span><br><span class="line">    std::coroutine_handle&lt;promise_type&gt; handle;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<p>实现这个generator是一次性工作，一劳永逸。当然如果标准库有std::generator模板的话就更省事了，但是这个愿望要等 C++23 才会实现。</p>
+<p>可能你会觉得写个简单的类去实现相关的逻辑并不困难。但是设想一下，如果这个算法很复杂，所需要保存的变量值有很多的话。将这些变量抽到成员变量里并且在next()函数里实现阶段性返回就不那么容易了，而且写出来的代码绝对没有这个协程版本好维护。</p>
+<p>generator都有了，python 的其他函数式编程的filter、map之类的函数能实现吗？当然能，但是就又扯远了。本文不继续讨论函数式了，还是回到协程上来。</p>
+<h2 id="通用的协程返回类-Task"><a href="#通用的协程返回类-Task" class="headerlink" title="通用的协程返回类 Task"></a>通用的协程返回类 Task</h2><h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>截止目前，已经有一些基于 C++20 协程基础支持的开源协程库开源了，比如 cppcoro [10] ，follyl 里的协程库 coro [11]、以及我司（阿里巴巴）开源的 async_simplep [12]。这里悄悄说一句，async_simple 的名字起的不够“高大上”，但是代码质量还是不错的 😄。</p>
+<p>这些协程库都会提供一些通用的Coroutine Types、Awaitable Types等辅助类以及一些基于 C++20 协程的锁等同步机制，可以很方便的实现协程逻辑。而这些基础设施里，最最基本的就是一个通用的协程返回类型Task<T>的实现。</p>
+<p>一个功能完备且极具可扩展性的Task<T>实在是太复杂了，但是简单的一个 demo 还是比较容易的。在参（抄）考（袭）了上述协程库的大致思路以及其他参考文献后，这里给出来一个简单的实现。为了简单起见，忽略了所有 C++ 异常的保存和处理（我们平时 C++ 项目一般也不让使用异常机制，有非预期异常都是直接let it crash的）：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;functional&gt;</span><br><span class="line">#include &lt;deque&gt;</span><br><span class="line">#include &lt;optional&gt;</span><br><span class="line">#include &lt;coroutine&gt;</span><br><span class="line">#include &lt;thread&gt;</span><br><span class="line"></span><br><span class="line">template &lt;typename T&gt;</span><br><span class="line">class Task &#123;</span><br><span class="line">public:</span><br><span class="line">    struct promise_type;</span><br><span class="line">    using promise_handle_t = std::coroutine_handle&lt;promise_type&gt;;</span><br><span class="line"></span><br><span class="line">    explicit Task(promise_handle_t h) : handle(h) &#123;&#125;</span><br><span class="line">    Task(Task &amp;&amp;task) noexcept : handle(std::exchange(task.handle, &#123;&#125;)) &#123;&#125;</span><br><span class="line">    ~Task() &#123; if (handle) &#123; handle.destroy(); &#125; &#125;</span><br><span class="line"></span><br><span class="line">    template &lt;typename R&gt;</span><br><span class="line">    struct task_awaiter &#123;</span><br><span class="line">        explicit task_awaiter(Task&lt;R&gt; &amp;&amp;task) noexcept : task(std::move(task)) &#123;&#125;</span><br><span class="line"></span><br><span class="line">        task_awaiter(task_awaiter &amp;) = delete;</span><br><span class="line">        task_awaiter &amp;operator=(task_awaiter &amp;) = delete;</span><br><span class="line"></span><br><span class="line">        bool await_ready() noexcept &#123; return false; &#125;</span><br><span class="line">        void await_suspend(std::coroutine_handle&lt;&gt; handle) noexcept &#123;</span><br><span class="line">            task.finally([handle]() &#123; handle.resume(); &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        R await_resume() noexcept &#123; return task.get_result(); &#125;</span><br><span class="line"></span><br><span class="line">    private:</span><br><span class="line">        Task&lt;R&gt; task;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    struct promise_type &#123;</span><br><span class="line">        Task get_return_object() &#123;</span><br><span class="line">            return Task(promise_handle_t::from_promise(*this));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        std::suspend_never initial_suspend() &#123; return &#123;&#125;; &#125;</span><br><span class="line">        std::suspend_always final_suspend() noexcept &#123; return &#123;&#125;; &#125;</span><br><span class="line"></span><br><span class="line">        template &lt;typename U&gt;</span><br><span class="line">        task_awaiter&lt;U&gt; await_transform(Task&lt;U&gt; &amp;&amp;task) &#123;</span><br><span class="line">            return task_awaiter&lt;U&gt;(std::move(task));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        void unhandled_exception() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        void return_value(T t) &#123;</span><br><span class="line">            data_ = t;</span><br><span class="line">            notify_callbacks();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        void on_completed(std::function&lt;void(T)&gt; &amp;&amp;callback) &#123;</span><br><span class="line">            if (data_.has_value()) &#123;</span><br><span class="line">                callback(data_.value());</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                callbacks_.push_back(callback);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        T get() &#123;</span><br><span class="line">            return data_.value();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    private:</span><br><span class="line">        void notify_callbacks() &#123;</span><br><span class="line">            for (auto &amp;callback : callbacks_) &#123;</span><br><span class="line">                callback(data_.value());</span><br><span class="line">            &#125;</span><br><span class="line">            callbacks_.clear();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        std::optional&lt;T&gt; data_;</span><br><span class="line">        std::deque&lt;std::function&lt;void(T)&gt;&gt; callbacks_;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    T get_result() &#123;</span><br><span class="line">        return handle.promise().get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void then(std::function&lt;void(T)&gt; &amp;&amp;callback) &#123;</span><br><span class="line">        handle.promise().on_completed([callback](auto data) &#123;</span><br><span class="line">            callback(data);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void finally(std::function&lt;void()&gt; &amp;&amp;callback) &#123;</span><br><span class="line">        handle.promise().on_completed([callback](auto result) &#123;</span><br><span class="line">            callback();</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">    promise_handle_t handle;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Task&lt;int&gt; task1() &#123;</span><br><span class="line">    std::cout &lt;&lt; &quot;task1 run&quot; &lt;&lt; std::endl;</span><br><span class="line">    co_return 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Task&lt;int&gt; task2() &#123;</span><br><span class="line">    std::cout &lt;&lt; &quot;task2 run&quot; &lt;&lt; std::endl;</span><br><span class="line">    co_return 2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Task&lt;int&gt; call_task() &#123;</span><br><span class="line">    std::cout &lt;&lt; &quot;call_task&quot; &lt;&lt; std::endl;</span><br><span class="line">    int data1 = co_await task1();</span><br><span class="line">    std::cout &lt;&lt; &quot;call_task task1 data: &quot; &lt;&lt; data1 &lt;&lt; std::endl;</span><br><span class="line">    int data2 = co_await task2();</span><br><span class="line">    std::cout &lt;&lt; &quot;call_task task2 data: &quot; &lt;&lt; data2 &lt;&lt; std::endl;</span><br><span class="line">    co_return data1 + data2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    Task&lt;int&gt; task = call_task();</span><br><span class="line">    task.then([](int data) &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;call_task data: &quot; &lt;&lt; data &lt;&lt; std::endl;</span><br><span class="line">    &#125;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>代码执行结果如下：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">call_task</span><br><span class="line">task1 run</span><br><span class="line">call_task task1 data: 1</span><br><span class="line">task2 run</span><br><span class="line">call_task task2 data: 2</span><br><span class="line">call_task data: 3</span><br></pre></td></tr></table></figure></div>
+
+<p>可以在源码的函数里像之前的 demo 里加点日志去理解流程（或者直接使用调试器单步跟踪）。实际上这个 demo 没有实现真正意义上的等待和唤醒（甚至有些唤醒的逻辑都没运行到）。特别地，如果这些协程任务需要被调度到其他线程执行的话，还要考虑这些对象内部数据结构的并发安全性（直接使用std::mutex写不好就比普通的函数更容易出现死锁了 ）。另外这个 demo 也揭示了一旦使用了C++20 的协程异步手段，从入口开始要一直改造下去，最终「传染」到整个项目的所有异步函数。</p>
+<p>如果你有耐心读到这里的话，应该算是对 C++20 的协程勉强「入门」了。就可以能以这个文章为跳板去阅读其他起点更高的文章了。以目前 C++ 标准库提供的支持要手搓一个生产环境的协程框架还是比较困难的。这里推荐你阅读 async_simple 的文档 [13] 以及这两篇源码分析文章 [14] [15]。也可以回过头去阅读最经典的这个协程系列文章 [0]，读完了这篇文章后，这个系列文章已经不是那么难啃了。</p>
+<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><h2 id="-3"><a href="#-3" class="headerlink" title=""></a></h2><p>文章在这里结束很不过瘾，像是刚推开门又扭头快速离开了。但如果以C++ 20&#x2F;23 标准协程落地的情况看，这篇文章其实也该co_yield了。毕竟再写下去就是介绍其他二方库三方库的实现思路了。还是等 C++26 完全落地吧，到时候看心情可能会继续handle.resume() 完成后续的内容。到那个时候，使用 C++ 标准库的协程实现一些东西的难度应该会下降一个数量级（但愿）。</p>
+<h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a><strong>参考文献：</strong></h2><p>[0] 很多人推荐 <a class="link"   target="_blank" rel="noopener" href="https://lewissbaker.github.io/%EF%BC%8C%E8%BF%99%E7%AE%97%E6%98%AF%E6%9C%80%E6%97%A9%E6%9C%80%E5%85%A8%E9%9D%A2%E7%9A%84%E8%B5%84%E6%96%99%EF%BC%8C%E5%80%BC%E5%BE%97%E4%B8%80%E8%AF%BB%E3%80%82" >https://lewissbaker.github.io/，这算是最早最全面的资料，值得一读。<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br>[1] x86 calling conventions, <a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/X86_calling_conventions" >https://en.wikipedia.org/wiki/X86_calling_conventions<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>[2] 这句话的背景是单核 CPU 时代，当时还没有多个执行流提升性能的用途。<br>[3] Complier Explorer, <a class="link"   target="_blank" rel="noopener" href="https://godbolt.org/" >https://godbolt.org/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>[4] demo 代码在：<a class="link"   target="_blank" rel="noopener" href="https://godbolt.org/z/vdnY1GEoT" >https://godbolt.org/z/vdnY1GEoT<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>[5] cppreference Coroutines, <a class="link"   target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/language/coroutines" >https://en.cppreference.com/w/cpp/language/coroutines<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>[6] 注意是值拷贝，即如果是指针&#x2F;引用，需要调用方保证对象的生命周期大于协程的生命周期<br>[7] 注意这里的Promise和线程库里的std::promise 没什么关系。<br>[8] Lewis Baker 的第五篇博文详细讲了编译器生成代码, <a class="link"   target="_blank" rel="noopener" href="https://lewissbaker.github.io/2022/08/27/understanding-the-compiler-transform" >https://lewissbaker.github.io/2022/08/27/understanding-the-compiler-transform<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>[9] 文中未演示使用co_await传递一个值的方法，通常的方式是为co_await后面返回的类型T定义await_transform(T t)函数，类似示例里为co_yield定义的yield_value()函数。传递一个值还是建议使用co_yield来进行，而不使用co_await运算符（没错，它是个运算符，可以被重载）。<br>[10] cppcoro，<a class="link"   target="_blank" rel="noopener" href="https://github.com/lewissbaker/cppcoro" >https://github.com/lewissbaker/cppcoro<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>, 但是作者不维护了，去玩std::execution了,希望 C++26 能有可以用的std::execution吧。<br>[11] folly coro, <a class="link"   target="_blank" rel="noopener" href="https://github.com/facebook/folly/tree/main/folly/experimental/coro" >https://github.com/facebook/folly/tree/main/folly/experimental/coro<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>[12] async_simple, <a class="link"   target="_blank" rel="noopener" href="https://github.com/alibaba/async_simple" >https://github.com/alibaba/async_simple<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>[13] async_simple doc: <a class="link"   target="_blank" rel="noopener" href="https://alibaba.github.io/async_simple/docs.cn/GetStarted.html" >https://alibaba.github.io/async_simple/docs.cn/GetStarted.html<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>[14] async_simple 源码分析（上）, <a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/619684326" >https://zhuanlan.zhihu.com/p/619684326<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>[15] async_simple 源码分析（下）, <a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/619998880" >https://zhuanlan.zhihu.com/p/619998880<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>作者 | 浅奕</p>
+<p>来源 | 阿里云开发者公众号</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 浅谈C++20 协程那点事儿</li>
+        <li><strong>Author:</strong> Brandon Xing</li>
+        <li><strong>Created at
+                :</strong> 2025-06-13 10:17:40</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-06-13 12:16:39
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2025/06/13/浅谈C-20-协程那点事儿/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/05/20/EFL%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E4%B8%8EC-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">EFL文件格式与C++内存管理</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">浅谈C++20 协程那点事儿</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%8F%E7%A8%8B%E6%A6%82%E5%BF%B5"><span class="nav-text">协程概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-20-%E7%9A%84%E5%8D%8F%E7%A8%8B%E5%AE%9E%E7%8E%B0"><span class="nav-text">C++20 的协程实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E4%B8%80%E4%B8%AA%E2%80%9C%E7%AE%80%E5%8D%95%E2%80%9D%E7%9A%84-demo-%E5%BC%80%E5%A7%8B"><span class="nav-text">从一个“简单”的 demo 开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84-generator"><span class="nav-text">实现一个简单的 generator</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#-1"><span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E7%9A%84%E5%8D%8F%E7%A8%8B%E8%BF%94%E5%9B%9E%E7%B1%BB-Task"><span class="nav-text">通用的协程返回类 Task</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#-2"><span class="nav-text"></span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%90%8E%E9%9D%A2"><span class="nav-text">写在后面</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#-3"><span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%EF%BC%9A"><span class="nav-text">参考文献：</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Brandon Xing</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        4 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Search..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
